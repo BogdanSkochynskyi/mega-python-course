@@ -13,8 +13,17 @@ while True:
             file.writelines(todos)
             file.close()
         case 'show' | 'display':
-            for index, list_item in enumerate(todos):
-                print(f"{index + 1}.{list_item.strip()}")
+
+            # new_todos = []
+            # for item in todos:
+            #     new_todos.append(item.strip('\n'))
+            # Same:
+            # new_todos = [item.strip('\n') for item in todos]
+
+            for index, item in enumerate(todos):
+                item = item.strip('\n')
+                row = f"{index + 1}.{item}"
+                print(row)
         case 'edit':
             number = int(input("Write a number of todo item to edit "))
             new_text = input(f"You want to edit {todos[int(number) - 1]}, write new todo text ")
