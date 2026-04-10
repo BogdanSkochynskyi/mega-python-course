@@ -1,3 +1,8 @@
+def get_todos():
+    with open("todos.txt", "r") as file_local:
+        todos_local = file_local.readlines()
+    return todos_local
+
 while True:
     user_action = input("Type add [Task], show, edit [number], complete [number] or exit: ")
     user_action = user_action.strip().lower()
@@ -6,8 +11,7 @@ while True:
     if  user_action.startswith('add'):
         todo = user_action[4:] + '\n'
 
-        with open("todos.txt", "r") as file:
-            todos = file.readlines()
+        todos = get_todos()
 
         todos.append(todo)
 
@@ -21,8 +25,7 @@ while True:
         #     new_todos.append(item.strip('\n'))
         # Same:
         # new_todos = [item.strip('\n') for item in todos]
-        with open("todos.txt", "r") as file:
-            todos = file.readlines()
+        todos = get_todos()
 
         for index, item in enumerate(todos):
             item = item.strip('\n')
@@ -32,8 +35,7 @@ while True:
         try:
             number = int(user_action[5:])
 
-            with open("todos.txt", "r") as file:
-                todos = file.readlines()
+            todos = get_todos()
 
             new_text = input(f"You want to edit {todos[int(number) - 1].strip('\n')} write new todo text ") + '\n'
             todos[number - 1] = new_text
@@ -51,8 +53,7 @@ while True:
         try:
             number = int(user_action[9:])
 
-            with open("todos.txt", "r") as file:
-                todos = file.readlines()
+            todos = get_todos()
 
             completed_item = todos.pop(number - 1)
 
