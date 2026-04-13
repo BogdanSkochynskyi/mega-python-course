@@ -1,5 +1,6 @@
 TODOS_TXT = "todos.txt"
 
+
 def get_todos(filepath=TODOS_TXT):
     """ Return a list of todos from a file. """
     with open(filepath, "r") as file_local:
@@ -12,4 +13,8 @@ def write_todos(local_todos, filepath=TODOS_TXT):
     with open(filepath, "w") as local_file:
         local_file.writelines(local_todos)
 
-# print(help(get_todos))
+
+if __name__ == "__main__":
+    print(help(get_todos))
+    print(help(write_todos))
+# This part of code will be called only if run this file

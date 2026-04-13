@@ -1,6 +1,9 @@
 # from functions import get_todos, write_todos
+import time
 
 from modules import functions
+
+print(time.strftime("Now is %d.%m.%Y %H:%M:%S", time.localtime()))
 
 while True:
     user_action = input("Type add [Task], show, edit [number], complete [number] or exit: ")
