@@ -2,14 +2,29 @@ import FreeSimpleGUI as sg
 
 import modules.functions as functions
 import time
+import os
+import sys
+
+
+def resource_path(rel):
+    base = getattr(sys, "_MEIPASS", os.path.dirname(os.path.abspath(__file__)))
+    return os.path.join(base, rel)
+
+# create an executable file on Windows 
+# pyinstaller --onefile --windowed --clean --add-data "images/add.PNG;images" --add-data "images/complete.PNG;images" gui.py
+
+
+if not os.path.exists('todos.txt'):
+    with open('todos.txt', 'w') as f:
+        pass
 
 sg.theme('DarkBlue')
 
 label = sg.Text("Type in a to-do")
 input_box = sg.InputText(tooltip="Enter to-do", key="todo")
-add_button = sg.Button(image_source="images/add.png", tooltip="Add a to-do", key="Add")
+add_button = sg.Button(image_source=resource_path("images/add.PNG"), tooltip="Add a to-do", key="Add")
 edit_button = sg.Button("Edit")
-complete_button = sg.Button(key="Complete", image_source="images/complete.png", tooltip="Complete a to-do")
+complete_button = sg.Button(key="Complete", image_source=resource_path("images/complete.PNG"), tooltip="Complete a to-do")
 exit_button = sg.Button("Exit")
 list_box = sg.Listbox(values=functions.get_todos(), key="todos", enable_events=True, size=(45, 10))
 clock = sg.Text("", key="clock")
